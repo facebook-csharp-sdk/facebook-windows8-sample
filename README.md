@@ -11,3 +11,8 @@ Set the appropriate `AppId` in `FacebookLoginPage.xaml.cs` before running the sa
 ```csharp
 private const string AppId = "app_id";
 ```
+
+
+_**Note:**
+For new projects using Facebook C# SDK make sure to enable `Internet (Client)` capability in `Package.appxmanifest` file.
+This is already enabled by default when creating a new project in Visual Studio._
