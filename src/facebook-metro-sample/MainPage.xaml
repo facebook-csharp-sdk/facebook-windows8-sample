@@ -9,5 +9,13 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundBrush}">
 
+        <Frame x:Name="RootFrame" >
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromHorizontalOffset="200" />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+        
     </Grid>
 </Page>
