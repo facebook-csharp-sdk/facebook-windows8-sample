@@ -15,6 +15,7 @@ namespace facebook_metro_sample.Views
     public sealed partial class FacebookLoginPage : Page
     {
         private const string AppId = ""
+
         /// <summary>
         /// Extended permissions is a comma separated list of permissions to ask the user.
         /// </summary>

@@ -49,6 +49,8 @@ namespace facebook_metro_sample.Views
             FqlAsyncExample();
             FqlMultiQueryAsyncExample();
 
+            // todo: add batch request sample
+            //BatchRequestExample();
         }
 
         private async void GetUserProfilePicture()
@@ -184,12 +186,42 @@ namespace facebook_metro_sample.Views
             }
         }
 
+        private string _lastMessageId;
         private async void PostToWall_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                dynamic parameters = new ExpandoObject();
+                parameters.message = txtMessage.Text;
+
+                dynamic result = await _fb.PostTaskAsync("me/feed", parameters);
+                _lastMessageId = result.id;
+
+                //MessageBox.Show("Message Posted successfully");
+
+                txtMessage.Text = string.Empty;
+                btnDeleteLastMessage.IsEnabled = true;
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error message
+            }
         }
 
         private async void DeleteLastMessage_Click(object sender, RoutedEventArgs e)
         {
+            btnDeleteLastMessage.IsEnabled = false;
+
+            try
+            {
+                await _fb.DeleteTaskAsync(_lastMessageId);
+                //MessageBox.Show("Message deleted successfully");
+                btnDeleteLastMessage.IsEnabled = false;
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error message
+            }
         }
     }
 }
