@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using Facebook;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -39,6 +41,14 @@ namespace facebook_metro_sample.Views
         private void LoadFacebookData()
         {
             GetUserProfilePicture();
+
+            GraphApiAsyncDynamicExample();
+            GraphApiAsyncParametersDictionaryExample();
+            GraphApiAsyncParametersExpandoObjectExample();
+
+            FqlAsyncExample();
+            FqlMultiQueryAsyncExample();
+
         }
 
         private async void GetUserProfilePicture()
@@ -57,6 +67,120 @@ namespace facebook_metro_sample.Views
             catch (FacebookApiException ex)
             {
                 // handel error message
+            }
+        }
+
+        private async void GraphApiAsyncDynamicExample()
+        {
+            try
+            {
+                // instead of casting to IDictionary<string,object> or IList<object>
+                // you can also make use of the dynamic keyword.
+                dynamic result = await _fb.GetTaskAsync("me");
+
+                // You can either access it this way, using the .
+                dynamic id = result.id;
+                dynamic name = result.name;
+
+                // if dynamic you don't need to cast explicitly.
+                ProfileName.Text = "Hi " + name;
+
+                // or using the indexer
+                dynamic firstName = result["first_name"];
+                dynamic lastName = result["last_name"];
+
+                // checking if property exist
+                var localeExists = result.ContainsKey("locale");
+
+                // you can also cast it to IDictionary<string,object> and then check
+                var dictionary = (IDictionary<string, object>)result;
+                localeExists = dictionary.ContainsKey("locale");
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error
+            }
+        }
+
+        private async void GraphApiAsyncParametersDictionaryExample()
+        {
+            try
+            {
+                // additional parameters can be passed and 
+                // must be assignable from IDictionary<string, object>
+                var parameters = new Dictionary<string, object>();
+                parameters["fields"] = "first_name,last_name";
+
+                dynamic result = await _fb.GetTaskAsync("me", parameters);
+
+                FirstName.Text = "First Name: " + result.first_name;
+
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error message
+            }
+        }
+
+        private async void GraphApiAsyncParametersExpandoObjectExample()
+        {
+            try
+            {
+                // additional parameters can be passed and 
+                // must be assignable from IDictionary<string, object>
+                dynamic parameters = new ExpandoObject();
+                parameters.fields = "last_name";
+
+                dynamic result = await _fb.GetTaskAsync("me", parameters);
+
+                LastName.Text = "Last Name: " + result.last_name;
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error message
+            }
+        }
+
+        private async void FqlAsyncExample()
+        {
+            try
+            {
+                // query to get all the friends
+                var query = string.Format("SELECT uid,pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1={0})", "me()");
+
+                dynamic parameters = new ExpandoObject();
+                parameters.q = query;
+                dynamic result = await _fb.GetTaskAsync("fql", parameters);
+
+                TotalFriends.Text = string.Format("You have {0} friend(s).", result.data.Count);
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error message
+            }
+
+        }
+
+        private async void FqlMultiQueryAsyncExample()
+        {
+            try
+            {
+                var query1 = "SELECT uid FROM user WHERE uid=me()";
+                var query2 = "SELECT profile_url FROM user WHERE uid=me()";
+
+                dynamic parameters = new ExpandoObject();
+                parameters.q = new { query1, query2 };
+                dynamic result = await _fb.GetTaskAsync("fql", parameters);
+
+                dynamic resultForQuery1 = result.data[0].fql_result_set;
+                dynamic resultForQuery2 = result.data[1].fql_result_set;
+
+                var uid = resultForQuery1[0].uid;
+
+            }
+            catch (FacebookApiException ex)
+            {
+                // handle error message
             }
         }
 
