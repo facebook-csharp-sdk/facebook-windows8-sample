@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using Facebook;
 using Windows.UI.Xaml.Controls;
@@ -84,9 +85,18 @@ namespace facebook_metro_sample.Views
             }
         }
 
-        private void LoginSucceded(string accessToken)
+        private async void LoginSucceded(string accessToken)
         {
+            dynamic parameters = new ExpandoObject();
+            parameters.access_token = accessToken;
+            parameters.fields = "id";
 
+            dynamic result = await _fb.GetTaskAsync("me", parameters);
+            parameters = new ExpandoObject();
+            parameters.id = result.id;
+            parameters.access_token = accessToken;
+
+            Frame.Navigate(typeof(FacebookInfoPage), (object)parameters);
         }
     }
 }
