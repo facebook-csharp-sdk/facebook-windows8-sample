@@ -157,7 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
-      <HintPath>..\..\facebook-csharp-sdk-facebook-csharp-sdk-c501bd8\Bin\Release\WinRT\Facebook.dll</HintPath>
+      <HintPath>..\packages\Facebook.6.0.16\lib\WinRT\Facebook.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
