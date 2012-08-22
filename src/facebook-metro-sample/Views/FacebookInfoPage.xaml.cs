@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using Facebook;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Facebook;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -62,7 +62,8 @@ namespace facebook_metro_sample.Views
 
                 // available picture types: square (50x50), small (50xvariable height), large (about 200x variable height) (all size in pixels)
                 // for more info visit http://developers.facebook.com/docs/reference/api
-                string profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", _userId, "square", _fb.AccessToken);
+
+                string profilePictureUrl = "https://graph.facebook.com/" + _userId.ToString() + "/picture?type=square&access_token=" + _fb.AccessToken;
 
                 picProfile.Source = new BitmapImage(new Uri(profilePictureUrl));
             }
@@ -148,13 +149,13 @@ namespace facebook_metro_sample.Views
             try
             {
                 // query to get all the friends
-                var query = string.Format("SELECT uid,pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1={0})", "me()");
+
+                var query = "SELECT uid,pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1=me())";
 
                 dynamic parameters = new ExpandoObject();
                 parameters.q = query;
                 dynamic result = await _fb.GetTaskAsync("fql", parameters);
-
-                TotalFriends.Text = string.Format("You have {0} friend(s).", result.data.Count);
+                TotalFriends.Text = "You have " + result.data.Count + " Total Friends";
             }
             catch (FacebookApiException ex)
             {

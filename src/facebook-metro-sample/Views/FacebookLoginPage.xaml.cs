@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using Facebook;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Facebook;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -14,7 +14,7 @@ namespace facebook_metro_sample.Views
     /// </summary>
     public sealed partial class FacebookLoginPage : Page
     {
-        private const string AppId = ""
+        private const string AppId = "";
 
         /// <summary>
         /// Extended permissions is a comma separated list of permissions to ask the user.

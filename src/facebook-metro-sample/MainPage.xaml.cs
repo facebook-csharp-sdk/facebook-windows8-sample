@@ -25,13 +25,12 @@ namespace facebook_metro_sample
         public MainPage()
         {
             this.InitializeComponent();
-
-            RootFrame.Loaded += RootFrame_Loaded;
+            this.Loaded += RootFrame_Loaded;
         }
 
         void RootFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(HomePage));
+            Frame.Navigate(typeof(HomePage));            
         }
 
         /// <summary>
