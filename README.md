@@ -1,8 +1,8 @@
-# Facebook Sample using Facebook C# SDK with Windows 8 Metro Style Application
+# Facebook Sample using Facebook C# SDK with Windows 8 Store Application
 
-This sample demonstrates the use of Facebook C# SDK v6 as a Windows 8 Metro Style Application.
+This sample demonstrates the use of Facebook C# SDK v6 as a Windows 8 Store Application.
 
-_Note: This sample does not necessarily demonstrate the best use but rather features of using Facebook C# SDK on a Windows 8 Metro Style app. XTaskAsync methods are preferred over XAsync methods. Always remember to handle exceptions_
+_Note: This sample does not necessarily demonstrate the best use but rather features of using Facebook C# SDK on a Windows 8 Store App. XTaskAsync methods are preferred over XAsync methods. Always remember to handle exceptions_
 
 # Getting started
 
