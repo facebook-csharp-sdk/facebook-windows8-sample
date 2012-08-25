@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using Facebook;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Facebook;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 

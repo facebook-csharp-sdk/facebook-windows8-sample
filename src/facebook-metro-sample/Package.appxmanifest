@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
 
-  <Identity Name="8eeaff03-92dd-46c9-84fc-7b252f93800b"
-            Publisher="CN=Prabir"
+  <Identity Name="907b4351-047f-40c0-aba9-37b4e93cb7fb"
+            Publisher="CN=jamesbaca"
             Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>facebook-metro-sample</DisplayName>
-    <PublisherDisplayName>Prabir</PublisherDisplayName>
+    <PublisherDisplayName>jamesbaca</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
-    <Description>facebook-metro-sample</Description>
   </Properties>
 
   <Prerequisites>
-    <OSMinVersion>6.2</OSMinVersion>
-    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+    <OSMinVersion>6.2.0</OSMinVersion>
+    <OSMaxVersionTested>6.2.0</OSMaxVersionTested>
   </Prerequisites>
 
   <Resources>
@@ -31,7 +30,7 @@
             SmallLogo="Assets\SmallLogo.png"
             Description="facebook-metro-sample"
             ForegroundText="light"
-            BackgroundColor="#222222">
+            BackgroundColor="#464646">
             <DefaultTile ShowName="allLogos" />
             <SplashScreen Image="Assets\SplashScreen.png" />
         </VisualElements>
