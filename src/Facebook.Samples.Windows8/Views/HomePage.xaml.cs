@@ -69,7 +69,15 @@ namespace Facebook.Samples.Views
                     var callbackUri = new Uri(WebAuthenticationResult.ResponseData.ToString());
                     var facebookOAuthResult = _fb.ParseOAuthCallbackUrl(callbackUri);
                     var accessToken = facebookOAuthResult.AccessToken;
-                    LoginSucceded(accessToken);
+                    if (String.IsNullOrEmpty(accessToken))
+                    {
+                        // User is not logged in, they may have canceled the login
+                    }
+                    else
+                    {
+                        // User is logged in and token was returned
+                        LoginSucceded(accessToken);
+                    }
 
                 }
                 else if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.ErrorHttp)
@@ -78,7 +86,7 @@ namespace Facebook.Samples.Views
                 }
                 else
                 {
-                    throw new InvalidOperationException("Error returned by AuthenticateAsync() : " + WebAuthenticationResult.ResponseStatus.ToString());
+                    // The user canceled the authentication
                 }
             }
             catch (Exception ex)
