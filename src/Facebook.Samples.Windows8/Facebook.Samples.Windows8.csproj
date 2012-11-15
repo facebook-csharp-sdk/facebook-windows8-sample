@@ -113,9 +113,6 @@
     <Compile Include="Views\FacebookInfoPage.xaml.cs">
       <DependentUpon>FacebookInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FacebookLoginPage.xaml.cs">
-      <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -133,10 +130,6 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Page Include="Views\FacebookInfoPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FacebookLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
