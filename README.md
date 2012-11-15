@@ -6,10 +6,10 @@ _Note: This sample does not necessarily demonstrate the best use but rather feat
 
 # Getting started
 
-Set the appropriate `AppId` in `FacebookLoginPage.xaml.cs` before running the sample.
+Set your own Facebook App ID to the variable `_facebookAppId` on line 27 in `Views\HomePage.xaml.cs` before running the sample.
 
 ```csharp
-private const string AppId = "app_id";
+string _facebookAppId = "app_id";
 ```
 
 
