@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
-namespace facebook_metro_sample
+namespace Facebook.Samples
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
