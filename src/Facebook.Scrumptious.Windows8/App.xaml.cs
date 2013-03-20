@@ -1,4 +1,4 @@
-﻿using Facebook.Scrumptious.Views;
+﻿using Facebook.Scrumptious.Windows8.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
-namespace Facebook.Scrumptious
+namespace Facebook.Scrumptious.Windows8
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -60,7 +60,7 @@ namespace Facebook.Scrumptious
 
             // Create a Frame to act navigation context and navigate to the first page
             var rootFrame = new Frame();
-            if (!rootFrame.Navigate(typeof(MainPage)))
+            if (!rootFrame.Navigate(typeof(HomePage)))
             {
                 throw new Exception("Failed to create initial page");
             }

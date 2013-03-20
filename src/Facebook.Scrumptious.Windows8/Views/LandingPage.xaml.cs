@@ -1,4 +1,4 @@
-﻿using Facebook.Scrumptious.ViewModel;
+﻿using Facebook.Scrumptious.Windows8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -20,12 +20,12 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace Facebook.Scrumptious.Views
+namespace Facebook.Scrumptious.Windows8.Views
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class LandingPage : Facebook.Scrumptious.Common.LayoutAwarePage
+    public sealed partial class LandingPage : Facebook.Scrumptious.Windows8.Common.LayoutAwarePage
     {
         public LandingPage()
         {

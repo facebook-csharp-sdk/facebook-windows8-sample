@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace Facebook.Scrumptious.Common
+namespace Facebook.Scrumptious.Windows8.Common
 {
     /// <summary>
     /// Value converter that translates true to false and vice versa.

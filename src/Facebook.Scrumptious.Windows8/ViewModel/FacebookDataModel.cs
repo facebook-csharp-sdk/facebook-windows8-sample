@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
-namespace Facebook.Scrumptious.ViewModel
+namespace Facebook.Scrumptious.Windows8.ViewModel
 {
     public class Friend
     {

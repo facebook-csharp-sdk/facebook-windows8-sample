@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Documents;
 
-namespace Facebook.Scrumptious.Common
+namespace Facebook.Scrumptious.Windows8.Common
 {
     /// <summary>
     /// Wrapper for <see cref="RichTextBlock"/> that creates as many additional overflow

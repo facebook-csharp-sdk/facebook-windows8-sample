@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Facebook.Scrumptious.ViewModel
+namespace Facebook.Scrumptious.Windows8.ViewModel
 {
     class Constants
     {

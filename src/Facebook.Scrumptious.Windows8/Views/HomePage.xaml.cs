@@ -1,4 +1,4 @@
-﻿using Facebook.Scrumptious.ViewModel;
+﻿using Facebook.Scrumptious.Windows8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Facebook.Scrumptious.Views
+namespace Facebook.Scrumptious.Windows8.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -75,7 +75,7 @@ namespace Facebook.Scrumptious.Views
                     else
                     {
                         App.AccessToken = accessToken;
-                        //Frame.Navigate(typeof(LandingPage));
+
                         // User is logged in and token was returned
                         LoginSucceded();
                     }
@@ -108,9 +108,6 @@ namespace Facebook.Scrumptious.Views
             parameters.fields = "id";
 
             dynamic result = await _fb.GetTaskAsync("me", parameters);
-            //parameters = new ExpandoObject();
-            //parameters.id = result.id;
-            //parameters.access_token = accessToken;
 
             App.FacebookId = result.id;
             Frame.Navigate(typeof(LandingPage));
