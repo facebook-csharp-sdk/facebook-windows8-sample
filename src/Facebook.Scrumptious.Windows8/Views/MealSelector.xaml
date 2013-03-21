@@ -14,7 +14,7 @@
     <common:LayoutAwarePage.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">Pick Meal</x:String>
         <DataTemplate x:Key="MealsItemTemplate">
         	<Grid>
         		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" FontSize="26.667"/>
