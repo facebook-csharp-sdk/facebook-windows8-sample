@@ -1,12 +1,15 @@
-﻿using Facebook.Scrumptious.Windows8.ViewModel;
+﻿using Facebook.Client;
+using Facebook.Scrumptious.Windows8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Authentication.Web;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,6 +34,8 @@ namespace Facebook.Scrumptious.Windows8.Views
         public HomePage()
         {
             this.InitializeComponent();
+
+            //this.Loaded += HomePage_Loaded;
         }
 
         /// <summary>
@@ -42,76 +47,33 @@ namespace Facebook.Scrumptious.Windows8.Views
         {  
         }
 
-        private async void btnFacebookLogin_Click(object sender, RoutedEventArgs e)
+        private FacebookSession session;
+        private async Task Authenticate()
         {
-            var redirectUrl = "https://www.facebook.com/connect/login_success.html";
+            string message = String.Empty;
             try
             {
-                //fb.AppId = facebookAppId;
-                var loginUrl = _fb.GetLoginUrl(new
-                {
-                    client_id = Constants.FacebookAppId,
-                    redirect_uri = redirectUrl,
-                    scope = _permissions,
-                    display = "popup",
-                    response_type = "token"
-                });
-
-                var endUri = new Uri(redirectUrl);
-
-                WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
-                                                        WebAuthenticationOptions.None,
-                                                        loginUrl,
-                                                        endUri);
-                if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
-                {
-                    var callbackUri = new Uri(WebAuthenticationResult.ResponseData.ToString());
-                    var facebookOAuthResult = _fb.ParseOAuthCallbackUrl(callbackUri);
-                    var accessToken = facebookOAuthResult.AccessToken;
-                    if (String.IsNullOrEmpty(accessToken))
-                    {
-                        // User is not logged in, they may have canceled the login
-                    }
-                    else
-                    {
-                        App.AccessToken = accessToken;
-
-                        // User is logged in and token was returned
-                        LoginSucceded();
-                    }
-
-                }
-                else if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.ErrorHttp)
-                {
-                    throw new InvalidOperationException("HTTP Error returned by AuthenticateAsync() : " + WebAuthenticationResult.ResponseErrorDetail.ToString());
-                }
-                else
-                {
-                    // The user canceled the authentication
-                }
+                session = await App.FacebookSessionClient.LoginAsync("user_about_me,read_stream");
+                App.AccessToken = session.AccessToken;
+                App.FacebookId = session.FacebookId;
+                
+                Frame.Navigate(typeof(LandingPage));
             }
-            catch (Exception ex)
+            catch (InvalidOperationException e)
             {
-                //
-                // Bad Parameter, SSL/TLS Errors and Network Unavailable errors are to be handled here.
-                //
-                throw ex;
+                message = "Login failed! Exception details: " + e.Message;
+                MessageDialog dialog = new MessageDialog(message);
+                dialog.ShowAsync();
             }
         }
 
-        private async void LoginSucceded()
+        async private void btnFacebookLogin_Click(object sender, RoutedEventArgs e)
         {
-            FacebookClient _fb = new FacebookClient(App.AccessToken);
-
-            dynamic parameters = new ExpandoObject();
-            parameters.access_token = App.AccessToken;
-            parameters.fields = "id";
-
-            dynamic result = await _fb.GetTaskAsync("me", parameters);
-
-            App.FacebookId = result.id;
-            Frame.Navigate(typeof(LandingPage));
+            if (!App.isAuthenticated)
+            {
+                App.isAuthenticated = true;
+                await Authenticate();
+            }
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿using Facebook.Scrumptious.Windows8.Views;
+﻿using Facebook.Client;
+using Facebook.Scrumptious.Windows8.ViewModel;
+using Facebook.Scrumptious.Windows8.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +26,8 @@ namespace Facebook.Scrumptious.Windows8
     /// </summary>
     sealed partial class App : Application
     {
+        public static bool isAuthenticated = false;
+        public static FacebookSessionClient FacebookSessionClient = new FacebookSessionClient(Constants.FacebookAppId);
         internal static string AccessToken = String.Empty;
         internal static string FacebookId = String.Empty;
 

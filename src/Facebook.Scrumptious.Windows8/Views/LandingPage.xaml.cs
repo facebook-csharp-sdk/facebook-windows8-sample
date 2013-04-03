@@ -1,4 +1,5 @@
-﻿using Facebook.Scrumptious.Windows8.ViewModel;
+﻿using Facebook.Client;
+using Facebook.Scrumptious.Windows8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -199,6 +200,17 @@ namespace Facebook.Scrumptious.Windows8.Views
                 return;
             }
 
+            FacebookSession session = await App.FacebookSessionClient.LoginAsync("publish_stream");
+            if (session == null)
+            {
+                MessageDialog dialog = new MessageDialog("Error while getting publishing permissions. Please try again.");
+                await dialog.ShowAsync();
+                return;
+            }
+
+            // refresh your access token to contain the publish permissions
+            App.AccessToken = session.AccessToken;
+
             FacebookClient fb = new FacebookClient(App.AccessToken);
 
             try
@@ -208,6 +220,11 @@ namespace Facebook.Scrumptious.Windows8.Views
 
                 MessageDialog successMessageDialog = new MessageDialog("Posted Open Graph Action, id: " + (string)result["id"]);
                 await successMessageDialog.ShowAsync();
+
+                // reset the selections after the post action has successfully concluded
+                this.selectFriendsTextBox.Text = "Select Friends";
+                this.selectMealTextBox.Text = "Select One";
+                this.selectRestaurantTextBox.Text = "Select One";
             }
             catch (Exception ex)
             {

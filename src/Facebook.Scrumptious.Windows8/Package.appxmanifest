@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="FacebookWin8Sample" Publisher="CN=&quot;Facebook C# SDK&quot;" Version="1.0.0.0" />
+  <Identity Name="FacebookWin8Sample" Publisher="CN=&quot;Facebook C# SDK&quot;" Version="1.0.0.3" />
   <Properties>
     <DisplayName>FacebookWin8Sample</DisplayName>
     <PublisherDisplayName>CSharpSDK</PublisherDisplayName>

@@ -55,3 +55,10 @@ npm-debug.log
 # Misc Ignores
 Thumbs.db
 !libs/*/[Bb]in/
+*.appxupload
+*.ps1
+*.psd1
+*.appx
+*.appxsym
+*.cer
+AppPackages
