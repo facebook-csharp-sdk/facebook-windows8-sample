@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE09014F-F5D6-4C53-8F5B-C98D407419C7}</ProjectGuid>
+    <ProjectGuid>{E568A4F8-2E1C-4997-8B73-73B0AF31AD85}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Facebook.Scrumptious.Windows8</RootNamespace>
@@ -12,11 +12,10 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>facebook-windows8-sample_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Facebook.Scrumptious.Windows8_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>4D01F1BA17D252B6A612E5BB7A605CD5CD16C0E2</PackageCertificateThumbprint>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <PackageCertificateThumbprint>C3355303FB616B9A9E6C540183D5FDDD908D9B6F</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -116,9 +115,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Constants.cs" />
     <Compile Include="ViewModel\FacebookDataModel.cs" />
-    <Compile Include="Views\FacebookInfoPage.xaml.cs">
-      <DependentUpon>FacebookInfoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\FriendSelector.xaml.cs">
       <DependentUpon>FriendSelector.xaml</DependentUpon>
     </Compile>
@@ -139,7 +135,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="facebook-windows8-sample_TemporaryKey.pfx" />
+    <None Include="Facebook.Scrumptious.Windows8_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +146,14 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Page Include="Views\FacebookInfoPage.xaml">
+    <Content Include="Common\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -159,8 +162,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LandingPage.xaml">
       <SubType>Designer</SubType>
@@ -176,30 +179,19 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="Common\StandardStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.0\lib\win8\Facebook.dll</HintPath>
-      <HintPath>..\packages\Facebook.6.3.2\lib\win8\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="Facebook.Client">
-      <HintPath>..\packages\Facebook.Client.0.3.0-alpha\lib\win8\Facebook.Client.dll</HintPath>
+      <HintPath>..\packages\Facebook.Client.0.5.0-alpha\lib\win8\Facebook.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

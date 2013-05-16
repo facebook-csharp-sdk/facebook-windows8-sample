@@ -57,6 +57,38 @@ namespace Facebook.Scrumptious.Windows8.Views
         {
         }
 
+        private async void LoadUserInfo()
+        {
+            FacebookClient fb = new FacebookClient(App.AccessToken);
+
+            dynamic parameters = new ExpandoObject();
+            parameters.access_token = App.AccessToken;
+            parameters.fields = "name";
+
+            dynamic result = await fb.GetTaskAsync("me", parameters);
+
+            string profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", App.FacebookId, "large", fb.AccessToken);
+
+            this.MyImage.Source = new BitmapImage(new Uri(profilePictureUrl));
+            this.MyName.Text = result.name;
+        }
+
+        async private void selectFriendsTextBox_Tapped(object sender, TappedRoutedEventArgs evtArgs)
+        {
+            FacebookClient fb = new FacebookClient(App.AccessToken);
+
+            dynamic friendsTaskResult = await fb.GetTaskAsync("/me/friends");
+            var result = (IDictionary<string, object>)friendsTaskResult;
+            var data = (IEnumerable<object>)result["data"];
+            foreach (var item in data)
+            {
+                var friend = (IDictionary<string, object>)item;
+
+                FacebookData.Friends.Add(new Friend { Name = (string)friend["name"], id = (string)friend["id"], PictureUri = new Uri(string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", (string)friend["id"], "square", App.AccessToken)) });
+            }
+
+            Frame.Navigate(typeof(FriendSelector));
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -88,27 +120,6 @@ namespace Facebook.Scrumptious.Windows8.Views
             }
         }
 
-        private async void LoadUserInfo()
-        {
-            FacebookClient _fb = new FacebookClient(App.AccessToken);
-
-            dynamic parameters = new ExpandoObject();
-            parameters.access_token = App.AccessToken;
-            parameters.fields = "name";
-
-            dynamic result = await _fb.GetTaskAsync("me", parameters);
-
-            string profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", App.FacebookId, "large", _fb.AccessToken);
-
-            this.MyImage.Source = new BitmapImage(new Uri(profilePictureUrl));
-            this.MyName.Text = result.name;
-        }
-
-        private void selectMealTextBox_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MealSelector));
-        }
-
         async private void selectRestaurantTextBox_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Geolocator _geolocator = new Geolocator();
@@ -120,13 +131,13 @@ namespace Facebook.Scrumptious.Windows8.Views
 
             // default location is somewhere in redmond, WA
             double latitude = 47.627903;
-            double longitude =  -122.143185;
+            double longitude = -122.143185;
             try
             {
                 // We will wait 100 milliseconds and accept locations up to 48 hours old before we give up
-                pos = await _geolocator.GetGeopositionAsync(new TimeSpan(48,0,0), new TimeSpan(0,0,0,0,100)).AsTask(token);
+                pos = await _geolocator.GetGeopositionAsync(new TimeSpan(48, 0, 0), new TimeSpan(0, 0, 0, 0, 100)).AsTask(token);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 // this API can timeout, so no point breaking the code flow. Use
                 // default latitutde and longitude and continue on.
@@ -172,21 +183,9 @@ namespace Facebook.Scrumptious.Windows8.Views
             Frame.Navigate(typeof(Restaurants));
         }
 
-        async private void selectFriendsTextBox_Tapped(object sender, TappedRoutedEventArgs evtArgs)
+        private void selectMealTextBox_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            FacebookClient fb = new FacebookClient(App.AccessToken);
-
-            dynamic friendsTaskResult = await fb.GetTaskAsync("/me/friends");
-            var result = (IDictionary<string, object>)friendsTaskResult;
-            var data = (IEnumerable<object>)result["data"];
-            foreach (var item in data)
-            {
-                var friend = (IDictionary<string, object>)item;
-
-                FacebookData.Friends.Add(new Friend { Name = (string)friend["name"], id = (string)friend["id"], PictureUri = new Uri(string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", (string)friend["id"], "square", App.AccessToken)) });
-            }
-
-            Frame.Navigate(typeof(FriendSelector));
+            Frame.Navigate(typeof(MealSelector));
         }
 
         async private void PostButtonAppbar_Tapped(object sender, TappedRoutedEventArgs e)

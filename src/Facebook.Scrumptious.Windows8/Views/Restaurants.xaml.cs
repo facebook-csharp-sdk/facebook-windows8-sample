@@ -27,17 +27,6 @@ namespace Facebook.Scrumptious.Windows8.Views
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            if (this.restaurantsListBox.SelectedIndex >= 0)
-            {
-                FacebookData.SelectedRestaurant = (Location)this.restaurantsListBox.SelectedItem;
-                FacebookData.IsRestaurantSelected = true;
-            }
-
-            base.OnNavigatedFrom(e);
-        }
-
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -59,6 +48,17 @@ namespace Facebook.Scrumptious.Windows8.Views
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (this.restaurantsListBox.SelectedIndex >= 0)
+            {
+                FacebookData.SelectedRestaurant = (Location)this.restaurantsListBox.SelectedItem;
+                FacebookData.IsRestaurantSelected = true;
+            }
+
+            base.OnNavigatedFrom(e);
         }
     }
 }

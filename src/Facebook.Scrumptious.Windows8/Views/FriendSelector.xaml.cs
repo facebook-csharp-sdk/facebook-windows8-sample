@@ -27,21 +27,6 @@ namespace Facebook.Scrumptious.Windows8.Views
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            // this runs in the UI thread, so it is ok to modify the 
-            // viewmodel directly here
-            FacebookData.SelectedFriends.Clear();
-            var selectedFriends = this.friendsListBox.SelectedItems;
-            foreach (Friend oneFriend in selectedFriends)
-            {
-                FacebookData.SelectedFriends.Add(oneFriend);
-            }
-
-            base.OnNavigatedFrom(e);
-        }
-    
-
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -63,6 +48,20 @@ namespace Facebook.Scrumptious.Windows8.Views
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            // this runs in the UI thread, so it is ok to modify the 
+            // viewmodel directly here
+            FacebookData.SelectedFriends.Clear();
+            var selectedFriends = this.friendsListBox.SelectedItems;
+            foreach (Friend oneFriend in selectedFriends)
+            {
+                FacebookData.SelectedFriends.Add(oneFriend);
+            }
+
+            base.OnNavigatedFrom(e);
         }
     }
 }

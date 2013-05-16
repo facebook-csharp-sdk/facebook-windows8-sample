@@ -13,8 +13,7 @@
     <Page.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">Scrumptious
-		</x:String>
+        <x:String x:Key="AppName">Facebook Scrumptious Sample for Windows 8</x:String>
     </Page.Resources>
 
     <!--
@@ -29,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <Grid Grid.Row="0">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -37,54 +36,52 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
+
         <Grid Grid.Row="1">
-        	<Grid.ColumnDefinitions>
-        		<ColumnDefinition Width="208*"/>
-        		<ColumnDefinition Width="475*"/>
-        	</Grid.ColumnDefinitions>
-        	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        		<Image x:Name="MyImage" Height="100" Width="100"/>
-        		<TextBlock x:Name="MyName" TextWrapping="Wrap" Text="TextBlock" FontFamily="Segoe UI" FontSize="29.333"/>
-        	</StackPanel>
-        	<StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-        		<Grid x:Name="WhatAreYouEatingGrid" >
-        			<Grid.ColumnDefinitions>
-        				<ColumnDefinition Width="150"/>
-        				<ColumnDefinition Width="*"/>
-        			</Grid.ColumnDefinitions>
-        			<Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="150" Grid.Column="0" Stretch="None" Source="ms-appx:///Assets/CafeWin8.png" />
-        			<StackPanel Height="100" Grid.Column="1" >
-        				<TextBlock TextWrapping="Wrap" Text="What are you eating?" FontFamily="Segoe UI" FontSize="48"/>
-        				<TextBlock x:Name="selectMealTextBox" TextWrapping="Wrap" Text="Select One" FontFamily="Segoe UI" FontSize="26.667" Foreground="#FF6DB7C7" Tapped="selectMealTextBox_Tapped"/>
-        			</StackPanel>
-        		</Grid>
-        		<Grid x:Name="WhereAreYouEatingGrid" >
-        			<Grid.ColumnDefinitions>
-        				<ColumnDefinition Width="150"/>
-        				<ColumnDefinition Width="*"/>
-        			</Grid.ColumnDefinitions>
-        			<Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="150"  Grid.Column="0" Stretch="None" Source="ms-appx:///Assets/PlacesWin8.png" />
-        			<StackPanel Grid.Column="1">
-        				<TextBlock TextWrapping="Wrap" Text="Where are you?" FontFamily="Segoe UI" FontSize="48"/>
-        				<TextBlock x:Name="selectRestaurantTextBox" TextWrapping="Wrap" Text="Select One" FontFamily="Segoe UI" FontSize="26.667" Foreground="#FF6DB7C7" Tapped="selectRestaurantTextBox_Tapped"/>
-        			</StackPanel>
-        		</Grid>
-        		<Grid x:Name="WithWhomGrid" >
-        			<Grid.ColumnDefinitions>
-        				<ColumnDefinition Width="150"/>
-        				<ColumnDefinition Width="
-						*"/>
-        			</Grid.ColumnDefinitions>
-        			<Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="150"  Grid.Column="0" Stretch="None" Source="ms-appx:///Assets/PersonWin8.png" />
-        			<StackPanel Grid.Column="1">
-        				<TextBlock TextWrapping="Wrap" Text="With Whom?" FontFamily="Segoe UI" FontSize="48"/>
-        				<TextBlock x:Name="selectFriendsTextBox" TextWrapping="Wrap" Text="Select Friends" FontFamily="Segoe UI" FontSize="26.667" Foreground="#FF6DB7C7" Tapped="selectFriendsTextBox_Tapped"/>
-        			</StackPanel>
-        		</Grid>
-        	</StackPanel>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="208*"/>
+                <ColumnDefinition Width="475*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="MyImage" Height="100" Width="100"/>
+                <TextBlock x:Name="MyName" TextWrapping="Wrap" Text="TextBlock" FontFamily="Segoe UI" FontSize="29.333"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                <Grid x:Name="WhatAreYouEatingGrid" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="150" Grid.Column="0" Stretch="None" Source="ms-appx:///Assets/CafeWin8.png" />
+                    <StackPanel Height="100" Grid.Column="1" >
+                        <TextBlock TextWrapping="Wrap" Text="What are you eating?" FontFamily="Segoe UI" FontSize="48"/>
+                        <TextBlock x:Name="selectMealTextBox" TextWrapping="Wrap" Text="Select One" FontFamily="Segoe UI" FontSize="26.667" Foreground="#FF6DB7C7" Tapped="selectMealTextBox_Tapped"/>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="WhereAreYouEatingGrid" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="150"  Grid.Column="0" Stretch="None" Source="ms-appx:///Assets/PlacesWin8.png" />
+                    <StackPanel Grid.Column="1">
+                        <TextBlock TextWrapping="Wrap" Text="Where are you?" FontFamily="Segoe UI" FontSize="48"/>
+                        <TextBlock x:Name="selectRestaurantTextBox" TextWrapping="Wrap" Text="Select One" FontFamily="Segoe UI" FontSize="26.667" Foreground="#FF6DB7C7" Tapped="selectRestaurantTextBox_Tapped"/>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="WithWhomGrid" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="150"  Grid.Column="0" Stretch="None" Source="ms-appx:///Assets/PersonWin8.png" />
+                    <StackPanel Grid.Column="1">
+                        <TextBlock TextWrapping="Wrap" Text="With Whom?" FontFamily="Segoe UI" FontSize="48"/>
+                        <TextBlock x:Name="selectFriendsTextBox" TextWrapping="Wrap" Text="Select Friends" FontFamily="Segoe UI" FontSize="26.667" Foreground="#FF6DB7C7" Tapped="selectFriendsTextBox_Tapped"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </Grid>
-
-
 
         <VisualStateManager.VisualStateGroups>
 
