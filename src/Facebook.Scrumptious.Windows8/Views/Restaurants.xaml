@@ -16,19 +16,19 @@
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Pick a place</x:String>
         <DataTemplate x:Key="RestaurantListBoxItemTemplate">
-        	<Grid>
-        		<Grid.ColumnDefinitions>
-        			<ColumnDefinition Width="11*"/>
-        			<ColumnDefinition Width="12*"/>
-        		</Grid.ColumnDefinitions>
-        		<Image HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Source="{Binding PictureUri}"/>
-        		<StackPanel Grid.Column="1" Margin="0,0,0,18" Orientation="Vertical">
-        			<TextBlock x:Name="RestaurantName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" FontSize="26.667" FontFamily="Segoe UI"/>
-        			<TextBlock x:Name="PlaceType" TextWrapping="Wrap" Text="{Binding Category}" FontFamily="Segoe  ui" FontSize="14.667"/>
-        		</StackPanel>
-        	</Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="11*"/>
+                    <ColumnDefinition Width="12*"/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Source="{Binding PictureUri}"/>
+                <StackPanel Grid.Column="1" Margin="0,0,0,18" Orientation="Vertical">
+                    <TextBlock x:Name="RestaurantName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" FontSize="26.667" FontFamily="Segoe UI"/>
+                    <TextBlock x:Name="PlaceType" TextWrapping="Wrap" Text="{Binding Category}" FontFamily="Segoe  ui" FontSize="14.667"/>
+                </StackPanel>
+            </Grid>
         </DataTemplate>
-       </common:LayoutAwarePage.Resources>
+    </common:LayoutAwarePage.Resources>
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -70,16 +70,16 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    	<Grid.DataContext>
-    		<ViewModel:FacebookData/>
-    	</Grid.DataContext>
+        <Grid.DataContext>
+            <ViewModel:FacebookData/>
+        </Grid.DataContext>
 
         <!-- Back button and page title -->
         <Grid>
-        	<Grid.RowDefinitions>
-        		<RowDefinition Height="139*"/>
-        		<RowDefinition/>
-        	</Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="139*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -88,7 +88,7 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}" Margin="0,0,30,39.274"/>
         </Grid>
         <Grid Grid.Row="1">
-        	<ListBox x:Name="restaurantsListBox" VerticalAlignment="Top" ItemsSource="{Binding Locations}" ItemTemplate="{StaticResource RestaurantListBoxItemTemplate}"/>
+            <ListBox x:Name="restaurantsListBox" VerticalAlignment="Top" ItemsSource="{Binding Locations}" ItemTemplate="{StaticResource RestaurantListBoxItemTemplate}"/>
         </Grid>
 
     </Grid>

@@ -27,14 +27,6 @@ namespace Facebook.Scrumptious.Windows8.Views
             this.InitializeComponent();
         }
 
-        private void mealSelectionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.mealSelectionListBox.SelectedItem != null)
-            {
-                FacebookData.SelectedMeal = (Meal)this.mealSelectionListBox.SelectedItem;
-            }
-        }
-
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -56,6 +48,14 @@ namespace Facebook.Scrumptious.Windows8.Views
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void mealSelectionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.mealSelectionListBox.SelectedItem != null)
+            {
+                FacebookData.SelectedMeal = (Meal)this.mealSelectionListBox.SelectedItem;
+            }
         }
     }
 }
